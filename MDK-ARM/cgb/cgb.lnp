@@ -1,0 +1,26 @@
+--cpu Cortex-M3
+"cgb\startup_stm32f103xb.o"
+"cgb\main.o"
+"cgb\gpio.o"
+"cgb\i2c.o"
+"cgb\stm32f1xx_it.o"
+"cgb\stm32f1xx_hal_msp.o"
+"cgb\ssd1306.o"
+"cgb\fonts.o"
+"cgb\stm32f1xx_hal_gpio_ex.o"
+"cgb\stm32f1xx_hal_i2c.o"
+"cgb\stm32f1xx_hal.o"
+"cgb\stm32f1xx_hal_rcc.o"
+"cgb\stm32f1xx_hal_rcc_ex.o"
+"cgb\stm32f1xx_hal_gpio.o"
+"cgb\stm32f1xx_hal_dma.o"
+"cgb\stm32f1xx_hal_cortex.o"
+"cgb\stm32f1xx_hal_pwr.o"
+"cgb\stm32f1xx_hal_flash.o"
+"cgb\stm32f1xx_hal_flash_ex.o"
+"cgb\stm32f1xx_hal_exti.o"
+"cgb\system_stm32f1xx.o"
+--strict --scatter "cgb\cgb.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "cgb.map" -o cgb\cgb.axf
