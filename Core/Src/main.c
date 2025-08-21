@@ -21,6 +21,8 @@
 #include "i2c.h"
 #include "gpio.h"
 #include "ssd1306.h"
+#include "bh1750.h"
+#include <stdio.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -56,7 +58,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+char buf[16];
 /* USER CODE END 0 */
 
 /**
@@ -89,10 +91,10 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_I2C1_Init();
+  MX_I2C2_Init();
   /* USER CODE BEGIN 2 */
   SSD1306_Init();
-  SSD1306_ShowString(0, 0, "Hello STM32");
-  SSD1306_ShowString(0, 2, "OLED OK!");
+  BH1750_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -100,7 +102,11 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+        float lux = BH1750_ReadLight();
+        snprintf(buf, sizeof(buf), "Lux: %.1f", lux);
+        SSD1306_Clear();
+        SSD1306_ShowString(0, 0, buf);
+        HAL_Delay(500);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
